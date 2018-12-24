@@ -7,7 +7,7 @@ PODS:
   - Protobuf (3.6.1)
 
 DEPENDENCIES:
-  - google-cast-sdk
+  - google-cast-sdk (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -18,6 +18,6 @@ SPEC CHECKSUMS:
   google-cast-sdk: 84c88641be5a09fb0424bb44975a53b1dbd2ee6a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: f6d826b2c9370080921a98b2f0a56ba1a8b16fb2
+PODFILE CHECKSUM: a9d3dbf1298f79d1f650b8e3b04ff9f35ec723a7
 
 COCOAPODS: 1.5.3
