@@ -67,15 +67,18 @@ class ViewController: UIViewController {
 
 extension ViewController: GCKRequestDelegate {
   func requestDidComplete(_ request: GCKRequest) {
-    print("Request completed")
+    output(message: "Request did complete")
   }
   
   func request(_ request: GCKRequest, didFailWithError error: GCKError) {
-    print("Request failed")
+    output(message: "Request did fail with error: \(error)")
   }
   
   func request(_ request: GCKRequest, didAbortWith abortReason: GCKRequestAbortReason) {
-    print("Request aborted")
+    output(message: "Request did abort with reason: \(abortReason)")
   }
 }
 
+// MARK: - Logger
+
+extension ViewController: Logger {}

@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: GCKLoggerDelegate {
   func logMessage(_ message: String, at level: GCKLoggerLevel, fromFunction function: String, location: String) {
-    print("[GCKCast] \(level): \(message)")
+    output(message: "\(level): \(message)")
   }
 }
+
+// MARK: - Logger
+
+extension AppDelegate: Logger {}
