@@ -15,6 +15,7 @@
 		F338D15721D18D64004230F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F338D15521D18D64004230F0 /* LaunchScreen.storyboard */; };
 		F338D16121D18ED2004230F0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F338D16021D18ED2004230F0 /* Podfile */; };
 		F338D16421D1A207004230F0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338D16321D1A207004230F0 /* Logger.swift */; };
+		F338D16B21D27BE5004230F0 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338D16A21D27BE5004230F0 /* UIViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		F338D16021D18ED2004230F0 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = SOURCE_ROOT; };
 		F338D16221D190C9004230F0 /* ChromecastStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChromecastStudy.entitlements; sourceTree = "<group>"; };
 		F338D16321D1A207004230F0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		F338D16A21D27BE5004230F0 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				F338D15521D18D64004230F0 /* LaunchScreen.storyboard */,
 				F338D15821D18D64004230F0 /* Info.plist */,
 				F338D16321D1A207004230F0 /* Logger.swift */,
+				F338D16A21D27BE5004230F0 /* UIViewControllerExtensions.swift */,
 			);
 			path = ChromecastStudy;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			files = (
 				F338D14F21D18D62004230F0 /* ViewController.swift in Sources */,
 				F338D16421D1A207004230F0 /* Logger.swift in Sources */,
+				F338D16B21D27BE5004230F0 /* UIViewControllerExtensions.swift in Sources */,
 				F338D14D21D18D62004230F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     setupChromecast()
-    setupCastContainer()
+//    setupCastContainer()
     return true
   }
   
@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return
     }
     let container = GCKCastContext.sharedInstance().createCastContainerController(for: navigationController)
+    container.miniMediaControlsViewController?.view.backgroundColor = .red
     container.miniMediaControlsItemEnabled = true
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = container

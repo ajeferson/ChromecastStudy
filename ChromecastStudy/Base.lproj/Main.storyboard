@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tMF-f5-lwS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,21 +18,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxg-aS-ujX">
-                                <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
+                                <rect key="frame" x="172.5" y="114" width="30" height="30"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="didTouchPlayButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="dOp-jn-eLR"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lA-PE-pcL">
+                                <rect key="frame" x="20" y="617" width="335" height="0.0"/>
+                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="2kL-Xm-aiD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Uxg-aS-ujX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Knb-aI-ZDt"/>
-                            <constraint firstItem="Uxg-aS-ujX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uQF-5a-l4a"/>
+                            <constraint firstItem="5lA-PE-pcL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BEk-i5-SQ4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5lA-PE-pcL" secondAttribute="bottom" constant="50" id="I64-FD-y49"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5lA-PE-pcL" secondAttribute="trailing" constant="20" id="KrQ-Dq-iUF"/>
+                            <constraint firstItem="Uxg-aS-ujX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QcH-Q8-ezg"/>
+                            <constraint firstItem="Uxg-aS-ujX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="rtx-WP-CaB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chromecast" id="tnF-1A-8ec"/>
+                    <connections>
+                        <outlet property="miniMediaControlsContainerView" destination="5lA-PE-pcL" id="yFe-KF-BNi"/>
+                        <outlet property="miniMediaControlsHeightConstraint" destination="2kL-Xm-aiD" id="NB2-0s-w3p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

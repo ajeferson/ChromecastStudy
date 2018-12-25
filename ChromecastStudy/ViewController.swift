@@ -10,22 +10,81 @@ import UIKit
 import GoogleCast
 
 class ViewController: UIViewController {
-  
-  private var castContext: GCKCastContext {
-    return GCKCastContext.sharedInstance()
-  }
   private var sessionManager: GCKSessionManager {
     return castContext.sessionManager
   }
   
+  @IBOutlet var miniMediaControlsContainerView: UIView!
+  @IBOutlet var miniMediaControlsHeightConstraint: NSLayoutConstraint!
+  
+  private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController?
+  var miniMediaControlsViewEnabled = false {
+    didSet {
+      if self.isViewLoaded {
+        updateControlBarsVisibility()
+      }
+    }
+  }
+  
+  var overridenNavigationController: UINavigationController?
+  override var navigationController: UINavigationController? {
+    get {
+      return overridenNavigationController
+    }
+    set {
+      overridenNavigationController = newValue
+    }
+  }
+  
+  var miniMediaControlsItemEnabled = false
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupChromecastButton()
+
+    miniMediaControlsViewEnabled = true
+    miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
+    miniMediaControlsViewController?.delegate = self
+    updateControlBarsVisibility()
+    install(viewController: miniMediaControlsViewController,
+            inContainerView: miniMediaControlsContainerView)
   }
   
-  private func setupChromecastButton() {
-    let castButton = GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
+  private func updateControlBarsVisibility() {
+    guard let miniMediaControlsViewController = miniMediaControlsViewController else {
+      output(message: "MiniMediaControlsViewController is nil")
+      return
+    }
+    
+    if miniMediaControlsViewEnabled && miniMediaControlsViewController.active {
+      miniMediaControlsHeightConstraint.constant = miniMediaControlsViewController.minHeight
+      view.bringSubviewToFront(miniMediaControlsContainerView)
+    } else {
+      miniMediaControlsHeightConstraint.constant = 0
+    }
+    
+    UIView.animate(withDuration: 1) {
+      self.view.layoutIfNeeded()
+    }
+    self.view.setNeedsLayout()
+  }
+  
+  private func install(viewController: UIViewController?, inContainerView containerView: UIView) {
+    guard let viewController = viewController else {
+      output(message: "Can not install a nil view controller")
+      return
+    }
+    
+    addChild(viewController)
+    viewController.view.frame = containerView.bounds
+    containerView.addSubview(viewController.view)
+    viewController.didMove(toParent: self)
+  }
+  
+  private func uninstall(viewController: UIViewController) {
+    viewController.willMove(toParent: nil)
+    viewController.view.removeFromSuperview()
+    viewController.removeFromParent()
   }
   
   // MARK: - Actions
@@ -79,6 +138,10 @@ extension ViewController: GCKRequestDelegate {
   }
 }
 
-// MARK: - Logger
+// MARK: - GCKUIMiniMediaControlsViewController Delegate
 
-extension ViewController: Logger {}
+extension ViewController: GCKUIMiniMediaControlsViewControllerDelegate {
+  func miniMediaControlsViewController(_ miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
+    updateControlBarsVisibility()
+  }
+}
