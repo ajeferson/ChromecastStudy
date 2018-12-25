@@ -114,6 +114,7 @@ class ViewController: UIViewController {
     mediaInfoBuilder.metadata = metadata
     let mediaInformation = mediaInfoBuilder.build()
     
+    castContext.presentDefaultExpandedMediaControls()
     guard let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(mediaInformation) else {
       return
     }
