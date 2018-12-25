@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     setupChromecast()
+    setupCastContainer()
     return true
   }
   
@@ -25,6 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GCKCastContext.setSharedInstanceWith(options)
     
     GCKLogger.sharedInstance().delegate = self
+  }
+  
+  private func setupCastContainer() {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    guard let navigationController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController") as? UINavigationController else {
+      return
+    }
+    let container = GCKCastContext.sharedInstance().createCastContainerController(for: navigationController)
+    container.miniMediaControlsItemEnabled = true
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = container
+    window?.makeKey()
   }
 }
 
