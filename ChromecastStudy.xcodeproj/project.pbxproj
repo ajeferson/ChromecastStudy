@@ -16,6 +16,7 @@
 		F338D16121D18ED2004230F0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F338D16021D18ED2004230F0 /* Podfile */; };
 		F338D16421D1A207004230F0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338D16321D1A207004230F0 /* Logger.swift */; };
 		F338D16B21D27BE5004230F0 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338D16A21D27BE5004230F0 /* UIViewControllerExtensions.swift */; };
+		F338D16D21D2E13E004230F0 /* BigBuckBunny.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F338D16C21D2E13E004230F0 /* BigBuckBunny.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		F338D16221D190C9004230F0 /* ChromecastStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChromecastStudy.entitlements; sourceTree = "<group>"; };
 		F338D16321D1A207004230F0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F338D16A21D27BE5004230F0 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		F338D16C21D2E13E004230F0 /* BigBuckBunny.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BigBuckBunny.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		F338D14B21D18D62004230F0 /* ChromecastStudy */ = {
 			isa = PBXGroup;
 			children = (
+				F338D16C21D2E13E004230F0 /* BigBuckBunny.jpg */,
 				F338D16221D190C9004230F0 /* ChromecastStudy.entitlements */,
 				F338D16021D18ED2004230F0 /* Podfile */,
 				F338D14C21D18D62004230F0 /* AppDelegate.swift */,
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F338D16D21D2E13E004230F0 /* BigBuckBunny.jpg in Resources */,
 				F338D15721D18D64004230F0 /* LaunchScreen.storyboard in Resources */,
 				F338D15421D18D64004230F0 /* Assets.xcassets in Resources */,
 				F338D16121D18ED2004230F0 /* Podfile in Resources */,

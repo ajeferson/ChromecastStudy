@@ -17,13 +17,28 @@ class ViewController: UIViewController {
   @IBOutlet var miniMediaControlsContainerView: UIView!
   @IBOutlet var miniMediaControlsHeightConstraint: NSLayoutConstraint!
   
-  private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController?
+  private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController? {
+    didSet {
+      miniMediaControlsViewController?.setButtonType(.closedCaptions, at: 0)
+      miniMediaControlsViewController?.setButtonType(.forward30Seconds, at: 1)
+      miniMediaControlsViewController?.setButtonType(.custom, at: 2)
+      miniMediaControlsViewController?.setCustomButton(customMiniControlsBarButton, at: 2)
+    }
+  }
   var miniMediaControlsViewEnabled = false {
     didSet {
       if self.isViewLoaded {
         updateControlBarsVisibility()
       }
     }
+  }
+  
+  var customMiniControlsBarButton: UIButton {
+    let button = UIButton()
+    button.setTitle("Custom", for: .normal)
+    button.setTitleColor(.red, for: .normal)
+    button.addTarget(self, action: #selector(didTouchCustomMiniButton), for: .touchUpInside)
+    return button
   }
   
   var overridenNavigationController: UINavigationController?
@@ -41,6 +56,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupChromecastButton()
+    stylishWidgets()
 
     miniMediaControlsViewEnabled = true
     miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
@@ -48,6 +64,12 @@ class ViewController: UIViewController {
     updateControlBarsVisibility()
     install(viewController: miniMediaControlsViewController,
             inContainerView: miniMediaControlsContainerView)
+  }
+  
+  private func stylishWidgets() {
+    let castStyle = GCKUIStyle.sharedInstance()
+    castStyle.castViews.mediaControl.miniController.backgroundColor = .red
+    castStyle.apply()
   }
   
   private func updateControlBarsVisibility() {
@@ -102,16 +124,28 @@ class ViewController: UIViewController {
                          height: 2000)
     metadata.addImage(image)
     
-    let url = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+//    let url = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg")
+    let url = Bundle.main.url(forResource: "BigBuckBunny", withExtension: ".jpg")
     guard let mediaURL = url else {
       print("invalid mediaURL")
       return
     }
     
+//    let captionsTrack = GCKMediaTrack(identifier: 1,
+//                                      contentIdentifier: "https://some-url/caption_en.vtt",
+//                                      contentType: "text/vtt",
+//                                      type: .text,
+//                                      textSubtype: .captions,
+//                                      name: "English captions",
+//                                      languageCode: "en",
+//                                      customData: nil)
+    
     let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
-    mediaInfoBuilder.streamType = .none // ??
-    mediaInfoBuilder.contentType = "video/mp4"
+    mediaInfoBuilder.streamType = .buffered
+    mediaInfoBuilder.contentType = "image/jpg"
     mediaInfoBuilder.metadata = metadata
+//    mediaInfoBuilder.mediaTracks = [captionsTrack]
+//    mediaInfoBuilder.customData =
     let mediaInformation = mediaInfoBuilder.build()
     
     castContext.presentDefaultExpandedMediaControls()
@@ -120,6 +154,13 @@ class ViewController: UIViewController {
     }
     
     request.delegate = self
+    
+//    castContext.sessionManager.currentSession?.remoteMediaClient?.rate
+  }
+  
+  
+  @objc func didTouchCustomMiniButton() {
+    output(message: "Custom Mini button pressed")
   }
 }
 
